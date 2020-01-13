@@ -1,5 +1,5 @@
 Documentation Inheritance for Sphinx
-====================================
+####################################
 
 The *sphinxcontrib-inherit* package is an extension to Sphinx_.  It allows you
 to extend existing sphinx documentation without needing to add any directives
@@ -15,9 +15,18 @@ takes a different approach on how the inheritance is implemented.
 
 .. start-of-readme-only-text
 
+
 Installation
 ============
 
-.. code:: python
+.. code:: bash
 
     pip3 install sphinxcontrib-inherit
+
+
+Usage
+=====
+
+Please refer to the documentation_ for further information.
+
+.. _documentation: https://sphinxcontrib-inherit.readthedocs.org/

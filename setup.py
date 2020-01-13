@@ -35,6 +35,7 @@ setup(
     project_urls={
         "Bug Tracker": (
             'https://bitbucket.org/libateq/sphinxcontrib-inherit/issues'),
+        "Documentation": 'https://sphinxcontrib-inherit.readthedocs.org/',
         "Source Code": 'https://bitbucket.org/libateq/sphinxcontrib-inherit',
     },
     keywords='sphinx inherit modular documentation',
