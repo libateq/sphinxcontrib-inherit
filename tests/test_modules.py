@@ -26,10 +26,10 @@ class TestInheritModules(TestCase):
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertNotRegex(
             source,
-            '(?ms)<h3>Module One Test.*</h3>')
+            r'(?ms)<h3>Module One Test.*</h3>')
         self.assertNotRegex(
             source,
-            '(?ms)<h3>Module Two Test.*</h3>')
+            r'(?ms)<h3>Module Two Test.*</h3>')
 
     @with_modular_app({'inherit_modules': []})
     def test_config_no_modules(self, app, status, warning):
@@ -38,10 +38,10 @@ class TestInheritModules(TestCase):
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertNotRegex(
             source,
-            '(?ms)<h3>Module One Test.*</h3>')
+            r'(?ms)<h3>Module One Test.*</h3>')
         self.assertNotRegex(
             source,
-            '(?ms)<h3>Module Two Test.*</h3>')
+            r'(?ms)<h3>Module Two Test.*</h3>')
 
     @with_modular_app({'inherit_modules': ['module1']})
     def test_config_module1(self, app, status, warning):
@@ -50,10 +50,10 @@ class TestInheritModules(TestCase):
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertRegex(
             source,
-            '(?ms)<h3>Module One Test.*</h3>')
+            r'(?ms)<h3>Module One Test.*</h3>')
         self.assertNotRegex(
             source,
-            '(?ms)<h3>Module Two Test.*</h3>')
+            r'(?ms)<h3>Module Two Test.*</h3>')
 
     @with_modular_app({'inherit_modules': ['module2']})
     def test_config_module2(self, app, status, warning):
@@ -62,10 +62,10 @@ class TestInheritModules(TestCase):
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertNotRegex(
             source,
-            '(?ms)<h3>Module One Test.*</h3>')
+            r'(?ms)<h3>Module One Test.*</h3>')
         self.assertRegex(
             source,
-            '(?ms)<h3>Module Two Test.*</h3>')
+            r'(?ms)<h3>Module Two Test.*</h3>')
 
     @with_modular_app({'inherit_modules': ['module1', 'module2']})
     def test_config_module1_and_module2(self, app, status, warning):
@@ -74,8 +74,8 @@ class TestInheritModules(TestCase):
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertRegex(
             source,
-            '(?ms)<h3>Module One Test.*</h3>.*'
-            '(?ms)<h3>Module Two Test.*</h3>')
+            r'(?ms)<h3>Module One Test.*</h3>.*'
+            r'(?ms)<h3>Module Two Test.*</h3>')
 
     @with_modular_app({'inherit_modules': ['module2', 'module1']})
     def test_config_module2_and_module1(self, app, status, warning):
@@ -84,8 +84,8 @@ class TestInheritModules(TestCase):
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertRegex(
             source,
-            '(?ms)<h3>Module Two Test.*</h3>.*'
-            '(?ms)<h3>Module One Test.*</h3>')
+            r'(?ms)<h3>Module Two Test.*</h3>.*'
+            r'(?ms)<h3>Module One Test.*</h3>')
 
     @with_modular_app({'inherit_modules': inherit_modules})
     def test_config_inherit_modules_function(self, app, status, warning):
@@ -94,5 +94,5 @@ class TestInheritModules(TestCase):
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertRegex(
             source,
-            '(?ms)<h3>Module One Test.*</h3>.*'
-            '(?ms)<h3>Module Two Test.*</h3>')
+            r'(?ms)<h3>Module One Test.*</h3>.*'
+            r'(?ms)<h3>Module Two Test.*</h3>')

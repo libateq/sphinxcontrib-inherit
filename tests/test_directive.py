@@ -33,8 +33,8 @@ class TestInheritDirectivePosition(TestCase):
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertRegex(
              source,
-             '(?ms)<h2>Tests<a[^>]*>¶</a></h2>.?</div>.?'
-             '<p>Test after directive\.</p>')
+             r'(?ms)<h2>Tests<a[^>]*>¶</a></h2>.?</div>.?'
+             r'<p>Test after directive\.</p>')
 
     @with_basic_app()
     def test_inherit_before(self, app, status, warning):
@@ -47,8 +47,8 @@ class TestInheritDirectivePosition(TestCase):
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertRegex(
              source,
-             '(?ms)<p>Test before directive\.</p>.?'
-             '<div[^>]*>.?<h2>Tests<a[^>]*>')
+             r'(?ms)<p>Test before directive\.</p>.?'
+             r'<div[^>]*>.?<h2>Tests<a[^>]*>')
 
     @with_basic_app()
     def test_inherit_inside(self, app, status, warning):
@@ -61,7 +61,8 @@ class TestInheritDirectivePosition(TestCase):
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertRegex(
             source,
-            '(?ms)<h2>Tests<a[^>]*>¶</a></h2>.?<p>Test inside directive\.</p>')
+            r'(?ms)<h2>Tests<a[^>]*>¶</a></h2>.?'
+            r'<p>Test inside directive\.</p>')
 
     @with_basic_app()
     def test_inherit_hide(self, app, status, warning):
@@ -70,7 +71,7 @@ class TestInheritDirectivePosition(TestCase):
         """
         app.builder.build_all()
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
-        self.assertNotRegex(source, '<h2>Tests')
+        self.assertNotRegex(source, r'<h2>Tests')
 
 
 class TestInheritDirectiveOptions(TestCase):
@@ -95,10 +96,10 @@ class TestInheritDirectiveOptions(TestCase):
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertRegex(
             source,
-            '(?ms)<h3>Subsection One<a[^>]*>¶</a></h3>.?'
-            '<p>A paragraph in subsection 1\.</p>.*'
-            '<h3>Subsection Two<a[^>]*>¶</a></h3>.?'
-            '<p>A paragraph in subsection 2\.</p>')
+            r'(?ms)<h3>Subsection One<a[^>]*>¶</a></h3>.?'
+            r'<p>A paragraph in subsection 1\.</p>.*'
+            r'<h3>Subsection Two<a[^>]*>¶</a></h3>.?'
+            r'<p>A paragraph in subsection 2\.</p>')
 
     @with_basic_app()
     def test_inherit_filter(self, app, status, warning):
@@ -123,11 +124,11 @@ class TestInheritDirectiveOptions(TestCase):
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertRegex(
             source,
-            '(?ms)<p>A paragraph in subsection 1\.</p>.*'
-            '<p>A paragraph in subsection 2\.</p>')
-        self.assertNotRegex(source, 'Section')
-        self.assertNotRegex(source, 'Subsection One')
-        self.assertNotRegex(source, 'Subsection Two')
+            r'(?ms)<p>A paragraph in subsection 1\.</p>.*'
+            r'<p>A paragraph in subsection 2\.</p>')
+        self.assertNotRegex(source, r'Section')
+        self.assertNotRegex(source, r'Subsection One')
+        self.assertNotRegex(source, r'Subsection Two')
 
     @with_content_app()
     def test_inherit_index_start(self, app, status, warning):
@@ -141,9 +142,9 @@ class TestInheritDirectiveOptions(TestCase):
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertRegex(
             source,
-            '(?ms)<div[^>]*>\s*'
-            '<p>A paragraph to test index insertion\.</p>\s*'
-            '<h[3-6]>Paragraphs')
+            r'(?ms)<div[^>]*>\s*'
+            r'<p>A paragraph to test index insertion\.</p>\s*'
+            r'<h[3-6]>Paragraphs')
 
     @with_content_app()
     def test_inherit_index_end(self, app, status, warning):
@@ -157,8 +158,8 @@ class TestInheritDirectiveOptions(TestCase):
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertRegex(
             source,
-            '(?ms)<p>The fourth paragraph\.</p>\s*'
-            '<p>A paragraph to test index insertion\.</p>\s*</div>')
+            r'(?ms)<p>The fourth paragraph\.</p>\s*'
+            r'<p>A paragraph to test index insertion\.</p>\s*</div>')
 
     @with_content_app()
     def test_inherit_index_1(self, app, status, warning):
@@ -172,9 +173,9 @@ class TestInheritDirectiveOptions(TestCase):
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertRegex(
             source,
-            '(?ms)<h[3-6]>Paragraphs<a[^>]*>[^<]*</a></h[3-6]>\s*'
-            '<p>A paragraph to test index insertion\.</p>\s*'
-            '<p>The first paragraph.</p>')
+            r'(?ms)<h[3-6]>Paragraphs<a[^>]*>[^<]*</a></h[3-6]>\s*'
+            r'<p>A paragraph to test index insertion\.</p>\s*'
+            r'<p>The first paragraph.</p>')
 
     @with_content_app()
     def test_inherit_index_minus_1(self, app, status, warning):
@@ -188,9 +189,9 @@ class TestInheritDirectiveOptions(TestCase):
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertRegex(
             source,
-            '(?ms)<p>The third paragraph\.</p>\s*'
-            '<p>A paragraph to test index insertion\.</p>\s*'
-            '<p>The fourth paragraph\.</p>')
+            r'(?ms)<p>The third paragraph\.</p>\s*'
+            r'<p>A paragraph to test index insertion\.</p>\s*'
+            r'<p>The fourth paragraph\.</p>')
 
     @with_content_app()
     def test_inherit_list_item_insertion(self, app, status, warning):
@@ -205,12 +206,12 @@ class TestInheritDirectiveOptions(TestCase):
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertRegex(
             source,
-            '(?ms)<ul[^>]*>\s*<li><p>first list item</p></li>\s*'
-            '<li><p>second list item</p></li>\s*'
-            '<li><p>inserted item 1</p></li>\s*'
-            '<li><p>inserted item 2</p></li>\s*'
-            '<li><p>third list item</p></li>\s*'
-            '<li><p>fourth list item</p></li>\s*</ul>')
+            r'(?ms)<ul[^>]*>\s*<li><p>first list item</p></li>\s*'
+            r'<li><p>second list item</p></li>\s*'
+            r'<li><p>inserted item 1</p></li>\s*'
+            r'<li><p>inserted item 2</p></li>\s*'
+            r'<li><p>third list item</p></li>\s*'
+            r'<li><p>fourth list item</p></li>\s*</ul>')
 
     @with_content_app('html')
     def test_inherit_toctree_insertion(self, app, status, warning):
@@ -231,11 +232,11 @@ class TestInheritDirectiveOptions(TestCase):
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertRegex(
             source,
-            '(?ms)<div[^>]*>\s*<ul>\s*'
-            '<li[^>]*><a[^>]*>Build Test</a></li>\s*'
-            '<li[^>]*><a[^>]*>Module</a></li>\s*'
-            '<li[^>]*><a[^>]*>Build Test</a></li>\s*'
-            '</ul>\s*</div>')
+            r'(?ms)<div[^>]*>\s*<ul>\s*'
+            r'<li[^>]*><a[^>]*>Build Test</a></li>\s*'
+            r'<li[^>]*><a[^>]*>Module</a></li>\s*'
+            r'<li[^>]*><a[^>]*>Build Test</a></li>\s*'
+            r'</ul>\s*</div>')
 
 
 class TestInheritDirectiveNodeTypes(TestCase):
@@ -255,7 +256,8 @@ class TestInheritDirectiveNodeTypes(TestCase):
         app.builder.build_all()
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertRegex(
-            source, '<p>Test substitutions: successfully substituted\.</p>')
+            source,
+            r'<p>Test substitutions: successfully substituted\.</p>')
 
     @with_basic_app()
     def test_inherit_hyperlink_internal(self, app, status, warning):
@@ -273,8 +275,8 @@ class TestInheritDirectiveNodeTypes(TestCase):
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertRegex(
             source,
-            '<p[^>]*>Test an <a[^>]*href="#internal-link"[^>]*>'
-            'internal link</a>\.</p>')
+            r'<p[^>]*>Test an <a[^>]*href="#internal-link"[^>]*>'
+            r'internal link</a>\.</p>')
 
     @with_basic_app()
     def test_inherit_hyperlink_external(self, app, status, warning):
@@ -292,8 +294,8 @@ class TestInheritDirectiveNodeTypes(TestCase):
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertRegex(
             source,
-            '<p>Test an <a[^>]*href="https://external.link/"[^>]*>'
-            'external link</a>\.</p>')
+            r'<p>Test an <a[^>]*href="https://external.link/"[^>]*>'
+            r'external link</a>\.</p>')
 
     @with_basic_app()
     def test_inherit_hyperlink_anonymous(self, app, status, warning):
@@ -311,8 +313,8 @@ class TestInheritDirectiveNodeTypes(TestCase):
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertRegex(
             source,
-            '<p>Test an <a[^>]*href="https://anonymous.link/"[^>]*>'
-            'anonymous link</a>\.</p>')
+            r'<p>Test an <a[^>]*href="https://anonymous.link/"[^>]*>'
+            r'anonymous link</a>\.</p>')
 
     @with_basic_app()
     def test_inherit_hyperlink_indirect(self, app, status, warning):
@@ -331,8 +333,8 @@ class TestInheritDirectiveNodeTypes(TestCase):
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertRegex(
             source,
-            '<p>Test an <a[^>]*href="https://indirect.link/"[^>]*>'
-            'indirect link</a>\.</p>')
+            r'<p>Test an <a[^>]*href="https://indirect.link/"[^>]*>'
+            r'indirect link</a>\.</p>')
 
     @with_basic_app()
     def test_inherit_citation(self, app, status, warning):
@@ -350,12 +352,12 @@ class TestInheritDirectiveNodeTypes(TestCase):
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertRegex(
             source,
-            '(?ms)<p>Test a citation '
-            '<a[^>]*href="#cit1" id="id1">'
-            '(<[^>]*>*)?\[?CIT1\]?(<[^>]*>*)?</a>\.</p>')
+            r'(?ms)<p>Test a citation '
+            r'<a[^>]*href="#cit1" id="id1">'
+            r'(<[^>]*>*)?\[?CIT1\]?(<[^>]*>*)?</a>\.</p>')
         self.assertRegex(
             source,
-            '(?ms)<a[^>]*href="#id1">\[?CIT1\]?</a>.*>First citation\.</')
+            r'(?ms)<a[^>]*href="#id1">\[?CIT1\]?</a>.*>First citation\.</')
 
     @with_basic_app()
     def test_inherit_footnote_manual(self, app, status, warning):
@@ -373,12 +375,12 @@ class TestInheritDirectiveNodeTypes(TestCase):
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertRegex(
             source,
-            '(?ms)<p>Test a manually numbered footnote '
-            '<a[^>]*href="#id2" id="id1">\[?1\]?</a>\.</p>')
+            r'(?ms)<p>Test a manually numbered footnote '
+            r'<a[^>]*href="#id2" id="id1">\[?1\]?</a>\.</p>')
         self.assertRegex(
             source,
-            '(?ms)<a[^>]*href="#id1">\[?1\]?</a>.*'
-            '>Manually numbered footnote\.</')
+            r'(?ms)<a[^>]*href="#id1">\[?1\]?</a>.*'
+            r'>Manually numbered footnote\.</')
 
     @with_basic_app()
     def test_inherit_footnote_named(self, app, status, warning):
@@ -396,10 +398,11 @@ class TestInheritDirectiveNodeTypes(TestCase):
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertRegex(
             source,
-            '(?ms)<p>Test a named footnote '
-            '<a[^>]*href="#footnote-name" id="id1">\[?1\]?</a>\.</p>')
+            r'(?ms)<p>Test a named footnote '
+            r'<a[^>]*href="#footnote-name" id="id1">\[?1\]?</a>\.</p>')
         self.assertRegex(
-            source, '(?ms)<a[^>]*href="#id1">\[?1\]?</a>.*>Named footnote\.</')
+            source,
+            r'(?ms)<a[^>]*href="#id1">\[?1\]?</a>.*>Named footnote\.</')
 
     @with_basic_app()
     def test_inherit_footnote_auto_numbered(self, app, status, warning):
@@ -417,11 +420,12 @@ class TestInheritDirectiveNodeTypes(TestCase):
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertRegex(
             source,
-            '(?ms)<p>Test an auto numbered footnote '
-            '<a[^>]*href="#id2" id="id1">\[?1\]?</a>\.</p>')
+            r'(?ms)<p>Test an auto numbered footnote '
+            r'<a[^>]*href="#id2" id="id1">\[?1\]?</a>\.</p>')
         self.assertRegex(
             source,
-            '(?ms)<a[^>]*href="#id1">\[?1\]?</a>.*>Auto numbered footnote\.</')
+            r'(?ms)<a[^>]*href="#id1">\[?1\]?</a>.*'
+            r'>Auto numbered footnote\.</')
 
     @with_basic_app()
     def test_inherit_footnote_auto_symbol(self, app, status, warning):
@@ -439,11 +443,11 @@ class TestInheritDirectiveNodeTypes(TestCase):
         source = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.assertRegex(
             source,
-            '(?ms)<p>Test an auto symbol footnote '
-            '<a[^>]*href="#id2" id="id1">\[?\*\]?</a>\.</p>')
+            r'(?ms)<p>Test an auto symbol footnote '
+            r'<a[^>]*href="#id2" id="id1">\[?\*\]?</a>\.</p>')
         self.assertRegex(
             source,
-            '(?ms)<a[^>]*href="#id1">\[?\*\]?</a>.*>Auto symbol footnote\.</')
+            r'(?ms)<a[^>]*href="#id1">\[?\*\]?</a>.*>Auto symbol footnote\.</')
 
     @with_basic_app('allow-warnings')
     def test_inherit_warning_missing_from_toc(self, app, status, warning):
@@ -453,7 +457,7 @@ class TestInheritDirectiveNodeTypes(TestCase):
         app.builder.build_all()
         self.assertRegex(
             warning.getvalue(),
-            "WARNING: document isn't included in any toctree")
+            r'WARNING: document isn\'t included in any toctree')
 
     @with_basic_app('allow-warnings')
     def test_inherit_warning_no_target(self, app, status, warning):
@@ -468,8 +472,8 @@ class TestInheritDirectiveNodeTypes(TestCase):
         app.builder.build_all()
         self.assertRegex(
             warning.getvalue(),
-            "WARNING: inherit not applied - "
-            "target '//non_existent_target' not found")
+            r'WARNING: inherit not applied - '
+            r'target \'//non_existent_target\' not found')
 
     @with_basic_app('allow-warnings')
     def test_inherit_warning_double_inherit(self, app, status, warning):
@@ -486,7 +490,7 @@ class TestInheritDirectiveNodeTypes(TestCase):
         app.builder.build_all()
         self.assertRegex(
             warning.getvalue(),
-            "WARNING: inherit captured 0 nodes instead of 1")
+            r'WARNING: inherit captured 0 nodes instead of 1')
 
     @with_basic_app('allow-warnings')
     def test_inherit_warning_too_few_nodes(self, app, status, warning):
@@ -502,7 +506,7 @@ class TestInheritDirectiveNodeTypes(TestCase):
         app.builder.build_all()
         self.assertRegex(
             warning.getvalue(),
-            "WARNING: inherit captured 1 nodes instead of 3")
+            r'WARNING: inherit captured 1 nodes instead of 3')
 
     @with_basic_app('allow-warnings')
     def test_inherit_warning_nested_inherit(self, app, status, warning):
@@ -519,7 +523,7 @@ class TestInheritDirectiveNodeTypes(TestCase):
         app.builder.build_all()
         self.assertRegex(
             warning.getvalue(),
-            "WARNING: nested inherits are not allowed")
+            r'WARNING: nested inherits are not allowed')
 
     @with_basic_app('allow-warnings')
     def test_inherit_warning_no_node(self, app, status, warning):
@@ -529,7 +533,7 @@ class TestInheritDirectiveNodeTypes(TestCase):
         app.builder.build_all()
         self.assertRegex(
             warning.getvalue(),
-            "WARNING: inherit requires a node to inherit")
+            r'WARNING: inherit requires a node to inherit')
 
     @with_basic_app('allow-warnings')
     def test_inherit_warning_has_content(self, app, status, warning):
@@ -541,4 +545,4 @@ class TestInheritDirectiveNodeTypes(TestCase):
         app.builder.build_all()
         self.assertRegex(
             warning.getvalue(),
-            "(?ms)Error in \"inherit\" directive:\sno content permitted\.")
+            r'(?ms)Error in "inherit" directive:\sno content permitted\.')
