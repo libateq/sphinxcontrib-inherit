@@ -351,7 +351,8 @@ class TestInheritDirectiveNodeTypes(TestCase):
         self.assertRegex(
             source,
             '(?ms)<p>Test a citation '
-            '<a[^>]*href="#cit1" id="id1">\[?CIT1\]?</a>\.</p>')
+            '<a[^>]*href="#cit1" id="id1">'
+            '(<[^>]*>*)?\[?CIT1\]?(<[^>]*>*)?</a>\.</p>')
         self.assertRegex(
             source,
             '(?ms)<a[^>]*href="#id1">\[?CIT1\]?</a>.*>First citation\.</')
