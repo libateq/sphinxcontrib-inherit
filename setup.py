@@ -57,16 +57,13 @@ setup(
     ],
     license='GPL-3',
     platforms='any',
-    packages=find_packages(),
+    packages=find_packages(exclude=['tests']),
     namespace_packages=['sphinxcontrib'],
     include_package_data=True,
     python_requires='>=3.5',
     install_requires=[
         'Sphinx>=2.0.0',
         'docpath>=0.1.1',
-    ],
-    tests_require=[
-        'sphinx-testing>=1.0.0',
     ],
     zip_safe=False,
 )

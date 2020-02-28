@@ -9,7 +9,7 @@ def with_modular_app(confoverrides):
     confoverrides.update({'exclude_patterns': []})
     return with_app(
         confoverrides=confoverrides,
-        srcdir='test/doc/modules/',
+        srcdir='tests/doc/modules/',
         warningiserror=True)
 
 

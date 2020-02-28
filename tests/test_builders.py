@@ -8,7 +8,7 @@ from unittest import TestCase
 def with_builder_app(buildername):
     return with_app(
         buildername=buildername,
-        srcdir='test/doc/basic/',
+        srcdir='tests/doc/basic/',
         warningiserror=True)
 
 

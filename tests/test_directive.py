@@ -7,7 +7,7 @@ from unittest import TestCase
 
 def with_basic_app(warnings=''):
     return with_app(
-        srcdir='test/doc/basic',
+        srcdir='tests/doc/basic',
         warningiserror=(warnings != 'allow-warnings'),
         write_docstring='module/index.rst')
 
@@ -15,7 +15,7 @@ def with_basic_app(warnings=''):
 def with_content_app(buildername='singlehtml'):
     return with_app(
         buildername=buildername,
-        srcdir='test/doc/content/',
+        srcdir='tests/doc/content/',
         warningiserror=True,
         write_docstring='module/index.rst')
 
