@@ -75,7 +75,7 @@ class TestInheritModules(TestCase):
         self.assertRegex(
             source,
             r'(?ms)<h3>Module One Test.*</h3>.*'
-            r'(?ms)<h3>Module Two Test.*</h3>')
+            r'<h3>Module Two Test.*</h3>')
 
     @with_modular_app({'inherit_modules': ['module2', 'module1']})
     def test_config_module2_and_module1(self, app, status, warning):
@@ -85,7 +85,7 @@ class TestInheritModules(TestCase):
         self.assertRegex(
             source,
             r'(?ms)<h3>Module Two Test.*</h3>.*'
-            r'(?ms)<h3>Module One Test.*</h3>')
+            r'<h3>Module One Test.*</h3>')
 
     @with_modular_app({'inherit_modules': inherit_modules})
     def test_config_inherit_modules_function(self, app, status, warning):
@@ -95,4 +95,4 @@ class TestInheritModules(TestCase):
         self.assertRegex(
             source,
             r'(?ms)<h3>Module One Test.*</h3>.*'
-            r'(?ms)<h3>Module Two Test.*</h3>')
+            r'<h3>Module Two Test.*</h3>')
